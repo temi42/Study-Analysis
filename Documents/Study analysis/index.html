@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Study Habits Analysis</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px;}
+    canvas { margin-bottom: 40px;}
+  </style>
+</head>
+<body>
+
+<h1>Study Habits vs Academic Performance</h1>
+
+<h2>Study vs Grades</h2>
+<canvas id="studyChart"></canvas>
+
+<h2>Sleep vs Grades</h2>
+<canvas id="sleepChart"></canvas>
+
+<h2>Effectiveness vs Grades</h2>
+<canvas id="effectChart"></canvas>
+
+<h2>Prediction Model</h2>
+<p id="prediction"></p>
+
+<h2>Key Insights</h2>
+<ul>
+  <li>Higher study hours tend to correlate with higher grades.</li>
+  <li>More sleep generally supports better academic performance.</li>
+  <li>Students who report higher effectiveness tend to achieve higher grades.</li>
+</ul>
+
+<h2>Limitations</h2>
+<ul>
+  <li>Small sample size may affect accuracy.</li>
+  <li>Some data may be simulated.</li>
+  <li>Responses are self-reported.</li>
+</ul>
+
+<script>
+
+const data = [
+  {"year": 2, "study": 2, "sleep": 8, "screen": 12, "attendance": 3, "grade": 75, "effectiveness": 2}, 
+  {"year": 4, "study": 4, "sleep": 4, "screen": 12, "attendance": 1, "grade": 65, "effectiveness": 1},
+  {"year": 3, "study": 3, "sleep": 6, "screen": 7, "attendance": 3, "grade": 75, "effectiveness": 1},
+  {"year": 3, "study": 4, "sleep": 5, "screen": 7, "attendance": 3, "grade": 85, "effectiveness": 3},
+  {"year": 1, "study": 2, "sleep": 5, "screen": 7, "attendance": 2, "grade": 65, "effectiveness": 1},
+  {"year": 2, "study": 3, "sleep": 6, "screen": 5, "attendance": 3, "grade": 72, "effectiveness": 2},
+  {"year": 3, "study": 5, "sleep": 7, "screen": 3, "attendance": 4, "grade": 85, "effectiveness": 3},
+  {"year": 4, "study": 6, "sleep": 8, "screen": 2, "attendance": 4, "grade": 90, "effectiveness": 3},
+  {"year": 2, "study": 4, "sleep": 6, "screen": 4, "attendance": 3, "grade": 78, "effectiveness": 2}
+];
+
+new Chart(document.getElementById('studyChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Study vs Grade',
+      data: data.map(d => ({x: d.study, y: d.grade})),
+      backgroundColor: 'Pink',
+      borderColor: 'Pink',
+    }]
+  },
+  options: {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Study Hours'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Grade'
+        }
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('sleepChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Sleep vs Grade',
+      data: data.map(d => ({x: d.sleep, y: d.grade})),
+      backgroundColor: 'Pink',
+      borderColor: 'Pink',
+    }]
+  },
+  options: {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Sleep Hours'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Grade'
+        }
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('effectChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Effectiveness vs Grade',
+      data: data.map(d => ({x: d.effectiveness, y: d.grade})),
+      backgroundColor:'Pink',
+      borderColor: 'Pink',
+    }]
+  },
+  options: {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Study Effectiveness(1-3)'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Grade'
+        }
+      }
+    }
+  }
+});
+
+function predictGrade(study, sleep, effectiveness) {
+  let score = 0;
+
+  if (study >= 5) score += 2;
+  else if (study >= 3) score += 1;
+
+  if (sleep >= 7) score += 2;
+  else if (sleep >= 5) score += 1;
+
+  if (effectiveness === 3) score += 2;
+  else if (effectiveness === 2) score += 1;
+
+  if (score >= 4) return "High grade expected (80+)";
+  if (score >= 2) return "Moderate grade expected (70–80)";
+  return "Lower grade expected (<70)";
+}
+
+document.getElementById("prediction").innerText =
+  predictGrade(4, 6, 2);
+
+</script>
+
+</body>
+</html>
