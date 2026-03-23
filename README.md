@@ -1,4 +1,4 @@
-# 📊 Study Habits vs Academic Performance Analysis
+# Study Habits vs Academic Performance Analysis
 
 ## 📌 Overview
 This project explores the relationship between student study habits and academic performance using data analysis and visualization. The goal is to identify patterns between factors such as study time, sleep, and perceived effectiveness, and how they influence grades.
@@ -35,7 +35,7 @@ The data consists of a combination of:
 
 ---
 
-## 📈 Features
+## Features
 
 ### 1. Data Visualization
 Scatter plots were created to analyze:
@@ -63,7 +63,7 @@ This demonstrates how basic decision rules can approximate patterns in real-worl
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 - Small sample size may affect accuracy  
 - Some data was simulated  
 - Responses are self-reported and may include bias  
@@ -78,7 +78,7 @@ This demonstrates how basic decision rules can approximate patterns in real-worl
 
 ---
 
-## 📌 Conclusion
+## Conclusion
 This project demonstrates how data analysis and simple computational models can be used to explore human behavior and decision-making. It highlights the role of data-driven insights in understanding and improving real-world outcomes.
 
 ---
